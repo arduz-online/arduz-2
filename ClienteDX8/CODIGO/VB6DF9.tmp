@@ -1,0 +1,243 @@
+Attribute VB_Name = "Engine_FX"
+Option Explicit
+
+Public Enum TEffect
+    NoEffect = 0
+    SlideX = 1
+    SlideY = 2
+    SlideBoth = 2
+End Enum
+
+Public Type bigfxdata
+    active As Byte
+    verts() As TLVERTEX
+    vertsR() As TLVERTEX
+    verts_multiplo() As Single
+    numverts As Integer
+    VBuffer As Direct3DVertexBuffer8
+    x As Byte
+    y As Byte
+    Progress As Single
+    type As Integer
+    die As Single
+    setup As Byte
+End Type
+
+Private Enum BFX_class
+    plane = 0
+    cilindro = 1
+    estrella = 2
+End Enum
+
+Private Type BFX_Stream
+    segmentos As Integer
+    textura As Integer
+    clase As BFX_class
+    color1 As D3DCOLORVALUE
+    color2 As D3DCOLORVALUE
+    alpha_factor As Single
+    alpha_inicial As Single
+    altura As Integer
+    radio As Integer
+    texture_effect As TEffect
+End Type
+
+Private BFX_streams() As BFX_Stream
+Private BFX_streams_last As Integer
+
+Private BFX_List() As bigfxdata
+Private BFX_Last As Integer
+
+
+Sub Create_VertexBufferFromTLVERTEX(RetBuffer As Direct3DVertexBuffer8, VERTEX_Array() As TLVERTEX)
+    Dim NUM_VERT As Long
+    NUM_VERT = UBound(VERTEX_Array) - LBound(VERTEX_Array) + 1
+    Set RetBuffer = obj_Device.CreateVertexBuffer(TL_size * NUM_VERT, 0, FVF, D3DPOOL_DEFAULT)
+    D3DVertexBuffer8SetData RetBuffer, 0, TL_size * NUM_VERT, 0, VERTEX_Array(LBound(VERTEX_Array))
+End Sub
+
+Public Sub BFX_Load_All()
+    BFX_streams_last = 1
+    ReDim BFX_streams(0 To 1)
+    With BFX_streams(1)
+        .alpha_factor = 0.01
+        .alpha_inicial = 1
+        .clase = cilindro
+        .color1.r = 1
+        .color1.g = 1
+        .color1.b = 1
+        .color2.r = 1
+        .color2.g = 1
+        .color2.b = 1
+        .segmentos = 16
+        .textura = 20208
+        .texture_effect = SlideX
+        .radio = 64
+        .altura = 128
+    End With
+End Sub
+
+Public Function BFX_Create(ByVal tipo As Integer, Optional ByVal life As Single = 0) As Integer
+    Dim i%, ID%, tmp As Single
+    If BFX_streams_last < tipo Then Exit Function
+    If BFX_Last <> 0 Then
+        For i = 0 To BFX_Last
+            If BFX_List(i).active = False Then
+                ID = i
+                Exit For
+            End If
+        Next i
+    End If
+    If ID = 0 Then
+        BFX_Last = BFX_Last + 1
+        ID = BFX_Last
+        ReDim Preserve BFX_List(0 To BFX_Last)
+    End If
+    With BFX_List(ID)
+        .setup = 0
+        .active = 1
+        .die = life
+        .numverts = (BFX_streams(tipo).segmentos * 4)
+        .type = tipo
+        ReDim .verts(0 To .numverts - 1)
+        ReDim .vertsR(0 To .numverts - 1)
+        ReDim .verts_multiplo(0 To .numverts - 1)
+        tmp = .numverts / 360
+        For i = 0 To .numverts - 1
+            .verts_multiplo(i) = tmp * i
+        Next i
+    End With
+
+    BFX_Create = ID
+    Debug.Print "creado"; BFX_Create
+End Function
+
+Public Function BFX_Make(ByVal tipo As Integer, ByVal x As Byte, ByVal y As Byte, Optional ByVal life As Single = 0) As Integer
+    BFX_Make = BFX_Create(tipo, life)
+    If BFX_Make = 0 Then Exit Function
+    With BFX_List(BFX_Make)
+        .x = x
+        .y = y
+        MapData(x, y).BFX = BFX_Make
+    End With
+End Function
+
+Public Sub BFX_Render_all(ByVal OffsetX As Integer, ByVal OffsetY As Integer)
+    Dim i%
+    If BFX_Last <> 0 Then
+        For i = 1 To BFX_Last
+            With BFX_List(i)
+                If .x <> 0 Then
+                    BFX_Render i, (.x - minX - TileBufferSize + 1) * 32 + OffsetX, (.y - minY - TileBufferSize + 1) * 32 + OffsetY
+                End If
+            End With
+        Next i
+    End If
+End Sub
+
+Public Sub BFX_Render(ByRef ID As Integer, ByVal OffsetX As Integer, ByVal OffsetY As Integer)
+
+    Dim tmp As Byte
+    If BFX_Last >= ID And ID <> 0 Then
+    
+        If BFX_Update(ID, OffsetX, OffsetY) = 1 Then
+            With BFX_List(ID)
+                If .x <> 0 Then OffsetY = OffsetY - MapData(.x, .y).alt
+                Call SurfaceDB.GetTexture(BFX_streams(.type).textura)
+                'D3DDevice.SetTexture 0, Nothing
+                tmp = SurfaceDB.GetTexturePNG(BFX_streams(.type).textura)
+                If tmp = 0 Then D3DDevice.SetRenderState D3DRS_DESTBLEND, D3DBLEND_ONE
+                'rensder
+                D3DDevice.SetRenderState D3DRS_CULLMODE, D3DCULL_NONE
+                If .numverts > 0 Then D3DDevice.DrawPrimitiveUP D3DPT_TRIANGLESTRIP, .numverts - 1, .vertsR(0), TL_size
+                If tmp = 0 Then D3DDevice.SetRenderState D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA
+                D3DDevice.SetRenderState D3DRS_CULLMODE, D3DCULL_CCW
+            End With
+        Else
+            BFX_List(ID).active = 0
+            ID = 0
+        End If
+    End If
+End Sub
+
+Private Function BFX_Update(ByVal ID As Integer, ByVal OffsetX As Integer, ByVal OffsetY As Integer) As Byte
+    Dim i%
+    With BFX_List(ID)
+        If .setup = 0 Then setup_BFX ID
+        If BFX_streams(.type).clase = cilindro Then
+            
+        ElseIf BFX_streams(.type).clase = estrella Then
+
+        Else
+            If BFX_streams(.type).texture_effect <> NoEffect Then
+            
+            End If
+        End If
+        DXCopyMemory .vertsR(0), .verts(0), TL_size * (.numverts - 1)
+        For i = 0 To .numverts - 1
+            .Progress = .Progress + 0.00001
+            
+            .vertsR(i).y = .vertsR(i).y + OffsetY
+            .vertsR(i).x = .vertsR(i).x + OffsetX
+            .vertsR(i).tu = 3 / .numverts * i + .Progress
+        Next i
+                
+    End With
+    
+BFX_Update = 1
+End Function
+
+Private Sub setup_BFX(ByVal ID As Integer)
+    Dim multiplo360 As Single
+    Dim tmp As Single
+    Dim i%
+    Dim DeltaSegAngle As Double
+    Dim SegmentLength As Double
+    Dim X0 As Single, Z0 As Single
+    Dim alt As Boolean
+    Dim cant As Integer
+    With BFX_List(ID)
+        DeltaSegAngle = (Pi / BFX_streams(.type).segmentos * 4#)
+        SegmentLength = 1# / BFX_streams(.type).segmentos
+        If BFX_streams(.type).clase = cilindro Then
+            For i = 0 To .numverts - 1 Step 2
+                .verts(i).x = BFX_streams(.type).radio * Sin((i + 1) / Pi / 4# / DeltaSegAngle)
+                .verts(i).y = BFX_streams(.type).radio * Cos((i + 1) / Pi / 4# / DeltaSegAngle) * Perspectiva
+                
+                'alt = Not alt
+                .verts(i).tv = 1
+                .verts(i).tu = 3 / .numverts * i
+                .verts(i).rhw = 1
+                .verts(i).Color = -1
+                If i = .numverts - 1 Then .verts(i) = .verts(0)
+                cant = cant + 1
+                If cant = BFX_streams(.type).segmentos * 2 Then Exit For
+            Next i
+            
+            cant = 0
+            For i = 1 To .numverts - 1 Step 2
+                .verts(i).x = .verts(i - 1).x
+                .verts(i).y = .verts(i - 1).y - BFX_streams(.type).altura
+                .verts(i).tv = 0
+                .verts(i).tu = 3 / .numverts * i
+                .verts(i).rhw = 1
+                .verts(i).Color = -1
+                cant = cant + 1
+            Next i
+            .verts(.numverts - 1) = .verts(1)
+            Debug.Print cant
+            .setup = 1
+        ElseIf BFX_streams(.type).clase = estrella Then
+        
+        End If
+    End With
+End Sub
+
+Public Sub BFX_Kill(ByVal ID As Integer, Optional ByVal life As Single = 1)
+
+End Sub
+
+Public Sub BFX_Remove_All()
+    ReDim BFX_List(0)
+    BFX_Last = 0
+End Sub

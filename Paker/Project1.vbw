@@ -1,0 +1,6 @@
+Form1 = 50, 50, 825, 485, , 25, 25, 800, 460, C
+clsPak = 100, 100, 875, 535, 
+modZLib = 75, 75, 850, 510, Z
+modFileAndPath = 125, 125, 900, 560, 
+modFolderBrowse = 150, 150, 925, 585, 
+AppErrorHandler = 175, 175, 950, 610, 

@@ -1,0 +1,3 @@
+VBGROUP 5.0
+StartupProject=Proyecto1.vbp
+Project=..\DllMapas\MapasArduz.vbp
