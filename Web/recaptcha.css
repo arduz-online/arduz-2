@@ -1,0 +1,15 @@
+.recaptchatable .recaptcha_r1_c1 { background: url(./_images/sprite.png) -0px -63px no-repeat!important;width: 318px;height: 9px;}
+.recaptchatable .recaptcha_r2_c1 { background: url(./_images/sprite.png) -18px -0px no-repeat!important;width: 9px;height: 57px;}
+.recaptchatable .recaptcha_r2_c2 { background: url(./_images/sprite.png) -27px -0px no-repeat!important;width: 9px;height: 57px;}
+.recaptchatable .recaptcha_r3_c1 { background: url(./_images/sprite.png) -0px -0px no-repeat!important;width: 9px;height: 63px;}
+.recaptchatable .recaptcha_r3_c2 { background: url(./_images/sprite.png) -18px -57px no-repeat!important;width: 300px;height: 6px;}
+.recaptchatable .recaptcha_r3_c3 { background: url(./_images/sprite.png) -9px -0px no-repeat!important;width: 9px;height: 63px;}
+.recaptchatable .recaptcha_r4_c1 { background: url(./_images/sprite.png) -43px -0px no-repeat!important;width: 171px;height: 49px;}
+.recaptchatable .recaptcha_r4_c2 { background: url(./_images/sprite.png) -36px -0px no-repeat!important;width: 7px;height: 57px;}
+.recaptchatable .recaptcha_r4_c4 { background: url(./_images/sprite.png) -214px -0px no-repeat!important;width: 97px;height: 57px;}
+.recaptchatable .recaptcha_r7_c1 { background: url(./_images/sprite.png) -43px -49px no-repeat!important;width: 171px;height: 8px;}
+.recaptchatable .recaptcha_r8_c1 { background: url(./_images/sprite.png) -43px -49px no-repeat!important;width: 25px;height: 8px;}
+#recaptcha_switch_img_btn #recaptcha_switch_img {display:none !important;}
+.recaptcha_theme_red #recaptcha_response_field {border:1px solid #3c2622!important;left:0!important;color:#000!important;-moz-border-radius:2px;}
+#recaptcha_challenge_field_holder{color:#000!important;}
+.recaptcha_input_area_text span{color:#000!important;}

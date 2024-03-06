@@ -1,0 +1,31 @@
+<?php
+$url = 'http://'.$_SERVER['HTTP_HOST'].'/';
+echo "<div id='menu'>
+
+<div class='arriba'>
+<ul>
+<li><a href='".$url."index.html' id='inicio' title='Inicio Tierras del Sur'>Inicio</a></li>
+<li><a href='".$url."reglamento.html' id='reglamento' title='Reglamento TDS'>Reglamento</a></li>
+<li><a href='".$url."manual.html' id='manual' title='Manual TDS'>Manual</a></li>
+<li><a href='http://foroaotds.localstrike.com.ar/foro/index.php' target='_blank' id='foro' title='Foro oficial TDS'>Foro</a></li>
+<li><a href='".$url."soporte.html' id='soporte' title='Soporte TDS'>Soporte</a></li>
+<li class='ultimo'><a href='staff.html' id='staff' title='Staff TDS'>Staff</a></li>
+</ul>
+</div>
+
+<div class='abajo'>
+<ul>
+<li><a href='".$url."ranking.html' id='ranking' title='Ranking TDS'>Ranking</a></li>
+<li><a href='".$url."top50.html' id='top50' title='Top 50 TDS'>Top 50</a></li>
+<li><a href='".$url."retos.html' id='retos' title='Retos TDS'>Retos</a></li>
+<li><a href='".$url."quests.html' id='quests' title='Quests TDS'>Quests</a></li>
+<li class='ultimo jugadores_online'>
+  <div id='online'>";
+include("scripts/num.php");
+echo "</div>
+  </li>
+</ul>
+</div>
+
+</div>";
+?>

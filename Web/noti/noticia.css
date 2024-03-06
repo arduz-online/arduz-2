@@ -1,0 +1,234 @@
+/* Noticias */
+
+h3 {
+font-family:"Trebuchet MS";
+color:#FFCC66;
+}
+
+.error {
+color:#FF3300;
+font-family:"Trebuchet MS";
+font-size:1.2em;
+}
+
+/************************/
+/*| caja noticias |*/
+.caja_noticia {
+padding:0 20px 5px 20px;
+cursor:default;
+}
+
+.caja_noticia .shortnews {
+padding:10px;
+}
+
+.caja_noticia .fullnews {
+padding:10px;
+}
+
+.caja_noticia p a:link {
+font-family:"Microsoft Sans Serif";
+font-size:0.9em;
+font-weight:bold;
+color:#00387D;
+text-decoration:none;
+cursor:pointer;
+}
+
+.caja_noticia p a:hover {
+color:#000000;
+text-decoration:underline;
+}
+
+.caja_noticia h2 {
+margin:0;
+font-family:"Trebuchet MS";
+font-size:1.2em;
+color:#623300;
+font-weight:normal;
+text-align:center;
+cursor:default;
+position:relative;
+top:8px;
+}
+
+.caja_noticia h2 a {
+cursor:pointer;
+display:block;
+width:100%;
+color:#623300;
+text-decoration:none;
+}
+
+.caja_noticia h2 a:hover {
+color:#000000;
+}
+
+.caja_noticia p {
+font-family:"Microsoft Sans Serif";
+font-size:0.75em;
+font-weight:bold;
+color:#000000;
+text-align:justify;
+cursor:text;
+}
+
+.link {
+font-family:"Microsoft Sans Serif";
+font-size:0.75em;
+font-weight:bold;
+color:#00387D;
+text-decoration:none;
+letter-spacing:1px;
+}
+
+.link:hover {
+color:#000000;
+}
+
+.por_contenido {
+background:url(imagenes/por_contenido_bg.gif) repeat-x;
+height:18px;
+line-height:1.7em;
+text-align:center;
+font-family:"Microsoft Sans Serif";
+font-size:0.65em;
+letter-spacing:0.1em;
+font-weight:bold;
+color:#432100;
+margin-left:24px;
+margin-right:24px;
+cursor:default;
+}
+
+.dato {
+color:#000000;
+}
+
+.por_l {
+background:url(imagenes/por_lr_bg.gif) left no-repeat;
+}
+
+.por_r {
+background:url(imagenes/por_lr_bg.gif) right no-repeat;
+}
+/*| /caja noticias |*/
+
+
+/* COMENTARIOS */
+.comentario {
+background:#fff6dc;
+margin-bottom:15px;
+width:100%;
+}
+
+.top_left_corner {
+background:url(imagenes/comentarios/top_left_corner.gif) left top no-repeat;
+}
+
+.top_right_corner {
+background:url(imagenes/comentarios/top_right_corner.gif) right top no-repeat;
+}
+
+.bottom_left_corner {
+background:url(imagenes/comentarios/bottom_left_corner.gif) left bottom no-repeat;
+}
+
+.bottom_right_corner {
+background:url(imagenes/comentarios/bottom_right_corner.gif) right bottom no-repeat;
+}
+
+.opciones {
+font-family:"Trebuchet MS";
+font-size:11px;
+color:#c9491c;
+text-align:right;
+float:right;
+padding-top:3px;
+padding-right:3px;
+}
+
+.opciones a {
+color:#c9491c;
+text-decoration:none;
+}
+
+.opciones a:hover {
+text-decoration:underline;
+}
+
+.info {
+padding-left:10px;
+text-align:left;
+}
+
+.fecha {
+font-family:"Trebuchet MS";
+color:#837345;
+font-size:12px;
+padding-right:20px;
+}
+
+.borde-separador-box {
+padding-left:7px;
+padding-right:7px;
+}
+
+.borde-separador {
+border-bottom:#ddcda9 1px solid;
+}
+
+.nro-comentario {
+font-family:"Microsoft Sans Serif";
+color:#837345;
+font-size:14px;
+}
+
+.usuario-comentario {
+font-family:"Trebuchet MS";
+color:#000000;
+}
+
+.texto {
+font-family:"Microsoft Sans Serif";
+font-size:12px;
+color:#333333;
+padding:10px;
+text-align:left;
+}
+
+#form1 textarea {
+background:url(imagenes/bg_input.gif);
+border:#442300 1px solid;
+font-family:"Microsoft Sans Serif";
+font-size:1em;
+font-weight:bold;
+color:#FFFCEA;
+letter-spacing:1px;
+}
+
+#form1 p {
+margin:0;
+margin-bottom:1.2em;
+font-family:"Microsoft Sans Serif";
+font-size:0.75em;
+font-weight:bold;
+color:#FFCC66;
+text-align:center;
+}
+
+#form1 .enviar_comentario {
+padding:2px;
+border:0;
+width:140px;
+text-align:center;
+background:url(imagenes/comentarios/bg_enviar_comentario.gif);
+font-family:"Microsoft Sans Serif";
+font-size:0.9em;
+font-weight:bold;
+color:#102d02;
+text-decoration:none;
+letter-spacing:1px;
+cursor:pointer;
+}
+/* /COMENTARIOS */

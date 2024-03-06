@@ -1,0 +1,4 @@
+@charset "utf-8";
+html {text-shadow: #000 0px 0px 1px;}	
+input[type=text],input[type=password]{-webkit-border-radius:2px;}
+#tooltip{-webkit-border-radius:5px;}

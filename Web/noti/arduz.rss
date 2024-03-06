@@ -1,0 +1,13 @@
+<html><head></head><body><?php
+require_once("seguro.php");
+	$res_id = exec_sql("SELECT * FROM `noticias` ORDER BY `date` DESC");
+	$i = 0;
+	while ($row = mysql_fetch_array($res_id)) {
+		$date = $row['date'];
+		$linx = urls_amigables($row['titulo']);
+		$tito = $row['titulo'];
+		$tito = '<a title="Leer m&aacute;s, '.$row['titulo'].'" href="leernoticia.html?n='.$row['id'].'.'.$linx.'">'.date("d-m-Y",$row['date']).' '.$tito.'</a><br />
+';
+		echo $tito;
+}
+?></body></html>

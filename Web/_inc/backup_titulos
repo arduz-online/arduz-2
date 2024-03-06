@@ -1,0 +1,250 @@
+function get_header_title_cases($text='menduz',$style=1,$tipo='div',$rnda=false)
+{
+global $urls,$Dida;
+	$style=(int)$style;
+	//$text=utf8_encode($text);
+		/*if($style===1){//pagetitle 	
+			$color1='0x734800';
+			$color2='0xffe2b0';
+			$styleadd='margin: 15px 0 10px 0;';
+			$fontid='fntExocetLight';
+			$font='font_exocetlight.swf';
+			$size='34';
+			$angle='90';
+			$letter_spacing='-1';
+			$opacity='100';
+		
+		}elseif($style===2){//pagetitle-small 	
+			$color1='0x734800';
+			$color2='0xffe2b0';
+			$styleadd='margin: 15px 0 10px 0;';
+			$fontid='fntExocetLight';
+			$font='font_exocetlight.swf';
+			$size='30';
+			$angle='90';
+			$letter_spacing='-1';
+			$opacity='100';
+		
+		}elseif($style===3){//pagetitlecenter 	
+			$color1='0x734800';
+			$color2='0xffe2b0';
+			$fontid='fntExocetLight';
+			$font='font_exocetlight.swf';
+			$size='24';
+			$angle='90';
+			$letter_spacing='-1';
+			$opacity='100';
+		
+		}elseif($style===4){//heavens 	
+			$color1='0xffcd92';
+			$color2='0xa55f00';
+			$fontid='fntExocetLight';
+			$font='font_exocetlight.swf';
+			$size='24';
+			$angle='90';
+			$letter_spacing='-1';
+			$opacity='100';
+		
+		}elseif($style===5){//tremble 	
+			$color2='0x981601';
+			$color1='0xff6700';
+			$fontid='fntExocetLight';
+			$font='font_exocetlight.swf';
+			$size='24';
+			$angle='90';
+			$letter_spacing='-1';
+			$opacity='100';
+		
+		}elseif($style===6){//pagesubtitle 	
+			$color1='0x9f7440';
+			$color2='0xdaa44e';
+			$styleadd='margin: 0 0 6px 0;';
+			$fontid='fntGeorgiaItalic';
+			$font='font_georgia_italic.swf';
+			$size='18';
+			$letter_spacing='0';
+				
+		}elseif($style===7){//firstletter 	
+			$color1='0x9f7440';
+			$color2='0xdaa44e';
+			$styleadd='float:left; margin:-2px 0px -20px -5px;';
+			$fontid='fntExocetLight';
+			$font='font_exocetlight.swf';
+			$size='100';
+			$angle='90';
+			$letter_spacing='0';
+			$opacity='100';
+				
+		}elseif($style===8){//firstletterworld 	
+			$color1='0x9f7440';
+			$color2='0xdaa44e';
+			$styleadd='float:left; margin:-10px 0px -20px -15px;';
+			$fontid='fntExocetLight';
+			$font='font_exocetlight.swf';
+			$size='67';
+			$angle='90';
+			$letter_spacing='0';
+			$opacity='100';
+			
+		}elseif($style===9){//pagesection 	
+			$color1='0x9f7440';
+			$color2='0xdaa44e';
+			$styleadd='margin:15px 0 10px -2px;';
+			$fontid='fntExocetLight';
+			$font='font_exocetlight.swf';
+			$size='20';
+			$angle='90';
+			$letter_spacing='1';
+			$opacity='100';
+		
+		}elseif($style===10){//subfeature 	
+			$color1='0xe7d1a8';
+			$fontid='fntFormal';
+			$font='font_formal.swf';
+			$size='14';
+			$letter_spacing='0';
+				
+		}elseif($style===11){//caption 	
+			$color1='0xcda45c';
+			$fontid='fntFormal';
+			$font='font_formal.swf';
+			$size='12';
+			$letter_spacing='0';
+		
+		}elseif($style===12){//captionexocet 	
+			$color1='0xcda45c';
+			$fontid='fntExocetLight';
+			$font='font_exocetlight.swf';
+			$size='36';
+			$letter_spacing='0';
+		
+		}elseif($style===13){//authortitle 	
+			$color1='0xcda45c';
+			$fontid='fntExocetLight';
+			$font='font_exocetlight.swf';
+			$size='14';
+			$letter_spacing='0';
+		
+		}elseif($style===14){//mediaenter 	
+			$color1='0xefc972';
+			$fontid='fntExocetLight';
+			$font='font_exocetlight.swf';
+			$size='12';
+			$letter_spacing='3';
+		
+		}elseif($style===15){//mediaheader 	
+			$color1='0xf4ce9f';
+			$fontid='fntExocetLight';
+			$font='font_exocetlight.swf';
+			$size='19';
+			$letter_spacing='0';
+		
+		}elseif($style===16){//movietitle 	
+			$color1='0xfff9ce';
+			$fontid='fntExocetLight';
+			$font='font_exocetlight.swf';
+			$size='14';
+			$letter_spacing='0';
+		
+		}elseif($style===17){//communitymod 	
+			$color1='0xd10000';
+			$fontid='fntFormal';
+			$font='font_formal.swf';
+			$size='14';
+			$letter_spacing='0';
+		
+		}elseif($style===18){//gallerynav 	
+			$color1='0xffeabc';
+			$fontid='fntExocetLight';
+			$font='font_exocetlight.swf';
+			$size='12';
+			$letter_spacing='0';
+		
+		}elseif($style===19){	$size='34';
+			$color1='0x734800';
+			$color2='0xffe2b0';
+			$opacity='100';
+			$font='font_exocetlight.swf';
+			$fontid='fntExocetLight';
+			$letter_spacing='-1';
+			$angle='90';
+		
+		}elseif($style===20){	$size='20';
+			$color1='0x333333';
+			$color2='0x949494';
+			$opacity='100';
+			$fontid='fntFormal';
+			$font='font_formal.swf';
+			$letter_spacing='';
+			$angle='90';
+		
+		}elseif($style===21){	$size='20';
+			$color1='0x550000';
+			$color2='0xFF0000';
+			$opacity='100';
+			$fontid='fntFormal';
+			$font='font_formal.swf';
+			$letter_spacing='-3';
+			$angle='90';
+		
+		}elseif($style===22){	$color1='0xffcd92';
+			$color2='0xa55f00';
+			$font='font_vinque.swf';
+			$fontid='fntVinque';
+			$size='24';
+			$angle='90';
+			$letter_spacing='-1';
+			$opacity='100';
+			$class=' centera';
+		
+		}elseif($style===23){	$color1='0x981601';
+			$color2='0xff6700';
+			$font='font_trajan.swf';
+			$fontid='fntTrajan';
+			$size='24';
+			$angle='90';
+			$letter_spacing='-1';
+			$opacity='100';
+			$class=' centera';
+		
+		}elseif($style===24){	$color1='0x981601';
+			$color2='0xff6700';
+			$font='font_trajan.swf';
+			$fontid='fntTrajan';
+			$size='33';
+			$angle='90';
+			$letter_spacing='-1';
+			$opacity='100';
+			$styleadd='margin-left: 10px;';
+			
+		}elseif($style===25){//heavens 	
+			$color1='0x92cdff';
+			$color2='0x005fa5';
+			$fontid='fntExocetLight';
+			$font='font_exocetlight.swf';
+			$size='24';
+			$angle='90';
+			$letter_spacing='-1';
+			$opacity='100';
+		}*/
+	
+	//$dominio=$urls[2].'_flash';
+	
+	
+	if($rnda!==false){
+		$Dida = 1000+rand(1,999999);
+		$Did=$Dida;
+	} else {
+		$Dida++;//=$Did.rand(1,123456);
+		$Did=$Dida-1;
+	}
+	//return '<div id="'.$Did.'" class="flashtext'.$class.'"'.($styleadd?' style="'.$styleadd.'"':'').'><object id="flash_'.$Did.'" height="100%" width="100%" type="application/x-shockwave-flash" data="_flash/flashtext.swf"><param name="movie" value="'.$dominio.'/flashtext.swf"/><param name="base" value="'.$dominio.'/"/><param name="allowScriptAccess" value="always"/><param name="wmode" value="transparent"/><param name="bgcolor" value="#000000"/><param name="menu" value="false"/><param name="quality" value="best"/><param name="flashvars" value="varFlash=divid==='.$Did.'***fontpath==='.$dominio.'/***fontname==='.$font.'***fontid==='.$fontid.'***fontsize==='.$size.'***color1==='.$color1.'***color2==='.$color2.'***letterspacing==='.$letter_spacing.'***noflash==='.$text.'***flashtext==='.$text.'***gradientangle==='.$angle.'***blendmode===***opacity==='.$opacity.'"/>'.$text.'</object></div>';
+	/*return '<div id="flashtextcontainer'.$Did.'"><div id="flashtext'.$Did.'" class="flashtext'.$class.'" style="'.($styleadd?$styleadd:'height:'.$size).'">'.'<h1>'.$text.'</h1><script type="text/javascript">
+            var flashvars = { xmlpath:"flashtext.xml", classname:"pagetitle", divid:"flashtextcontainer'.$Did.'", text:"'.rawurlencode($text).'" };
+            var params = { menu:"false", wmode:"transparent", base:"'.$urls[2].'_flash/" ,allowScriptAccess:"true" };
+            swfobject.embedSWF("'.$urls[2].'_flash/flashtextn.swf", "flashtext'.$Did.'", "100%", "100%", "9.0.0", false, flashvars, params);
+        </script></div></div>';//*/
+//	return '<div id="flashtextdiv_'.$Did.'" class="flashtext'.$class.'" style="'.($styleadd?$styleadd:'height:'.$size).'">'."</div><script type='text/javascript'>setFlash('flashtextdiv_$Did', 'flashtext_$Did', mediactx + '_flash/flashtext.swf', '100%', '100%', [['movie', mediactx + '_flash/flashtext.swf'], ['base', mediactx + '_flash/'], ['allowScriptAccess', 'always'], ['wmode', 'transparent'], ['bgcolor', '#000000'], ['menu', 'false'], ['quality', 'best'], ['flashvars', '".'varFlash=divid===flashtextdiv_'.$Did.'***fontpath===\'  + fontctx + \'***fontname==='.$font.'***fontid==='.$fontid.'***fontsize==='.$size.'***color1==='.$color1.'***color2==='.$color2.'***letterspacing==='.$letter_spacing.'***noflash==='.$text.'***flashtext==='.$text.'***gradientangle==='.$angle.'***blendmode===***opacity==='.$opacity."']], '$text');</script><noscript><b>$text</b></noscript>";
+
+	return '<'.$tipo.' id="flashtextdiv_'.$Did.'" class="flashtext" estilo="'.$style.'">'.$text.'</'.$tipo.'>';
+}

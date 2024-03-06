@@ -1,0 +1,74 @@
+<?php
+
+require_once("seguro.php");
+
+if (isset($_REQUEST['n']))
+{
+	preg_match('/[0-999].(.*?)/', $_REQUEST['n'], $id);
+	$titulo=$id[1];
+	$id=$id[0];
+	if (intval($id)>0)
+	{
+		$res_id = exec_sql("SELECT * FROM `noticias` WHERE `id`='".$id."' LIMIT 1");
+		$numero = mysql_num_rows($res_id);
+		if ($numero > 0)
+		{
+			$row = mysql_fetch_array($res_id);
+			$name = $row['name'];
+			$tito = $row['titulo'];
+			$mensaje = BBcode($row['msg']);
+			if (strlen($row['completa'])>0) $mensaje .= "<hr/>" . BBcode($row['completa']);
+			$buff = "
+<div class='caja_margen'>
+
+<div class='caja'>
+<div class='caja_shadow_t'>
+<div class='caja_shadow_b'>
+
+<div class='caja_l'>
+<div class='caja_r'>
+
+ 
+<div class='caja_t'>
+<div class='caja_b'>
+
+<div class='caja_noticia'>
+<h2>".$tito."</h2>
+<p>" . $mensaje . "</p>
+
+<div class='por_l'>
+<div class='por_r'>
+
+<div class='por_contenido'> <span class='dato'>Fecha:". date("d-m-y",$row['date']) ." Hora:". date("H:i",$row['date']) ."</span> -  Por: <span class='dato'>" . $name . "</span></div>
+
+</div>
+</div>
+
+
+</div>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+
+</div>";
+		} else {
+			$buff = $errorstr;
+		}
+	} else {
+		$buff = $errorstr;
+	}
+} else {
+	$buff = $errorstr;
+}
+theme_header("NOTICIAS TDS");
+echo $buff;
+footer();
+?>

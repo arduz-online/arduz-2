@@ -1,0 +1,15 @@
+
+# Contact info submission
+
+url: arduz.com.ar/ao
+site_owner: Arduz.com.ar
+address1: 
+address2: 
+city: 
+state: Buenos Aires
+country: Argentina
+postal_code: 
+phone_number: 
+display_email: lord.yo.wo@gmail.com
+site_name: 
+site_description: 

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
+         xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+  <loc>http://www.arduz.com.ar/</loc>
+  <priority>1.00</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.arduz.com.ar/ranking.php</loc>
+  <priority>0.90</priority>
+  <changefreq>hourly</changefreq>
+</url>
+<url>
+  <loc>http://www.arduz.com.ar/descargar.php</loc>
+  <priority>0.80</priority>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://www.arduz.com.ar/manual.php</loc>
+  <priority>0.80</priority>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://www.arduz.com.ar/ayuda.php</loc>
+  <priority>0.80</priority>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://www.arduz.com.ar/ranking_puntos.php</loc>
+  <priority>0.80</priority>
+  <changefreq>hourly</changefreq>
+</url>
+<url>
+  <loc>http://www.arduz.com.ar/ranking_honor.php</loc>
+  <priority>0.80</priority>
+  <changefreq>hourly</changefreq>
+</url>
+<url>
+  <loc>http://www.arduz.com.ar/ranking_clanes.php</loc>
+  <priority>0.80</priority>
+  <changefreq>hourly</changefreq>
+</url>
+<url>
+  <loc>http://www.arduz.com.ar/estadisticas.php</loc>
+  <priority>0.80</priority>
+  <changefreq>always</changefreq>
+</url>
+<url>
+  <loc>http://www.arduz.com.ar/noticia.php</loc>
+  <priority>0.80</priority>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://www.arduz.com.ar/version.php</loc>
+  <priority>0.70</priority>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://www.arduz.com.ar/mi_cuenta.php</loc>
+  <priority>0.50</priority>
+  <changefreq>monthly</changefreq>
+</url>
+<url>
+  <loc>http://www.arduz.com.ar/equipo.php</loc>
+  <priority>0.50</priority>
+  <changefreq>monthly</changefreq>
+</url>
+</urlset>

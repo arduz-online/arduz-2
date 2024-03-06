@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<flashtext>
+	<styles>
+		<pagetitle fontname="font_museo.swf" fontid="MuseoSans" fontsize="34" color="0xFFFFFF" uppercase="true" gradientcolor1="0xFFFFFF" gradientcolor2="0x93d3f7" gradientangle="90" shadowcolor="0x06151e" shadowblurx="5" shadowblury="5" shadowstrength="2" shadowalpha="20" shadowdistance="1" shadowangle="90"/>
+		<landingtitle fontname="font_museo.swf" fontid="MuseoSans" fontsize="34" color="0xFFFFFF" uppercase="true" gradientcolor1="0xFFFFFF" gradientcolor2="0x93d3f7" gradientangle="90" shadowcolor="0x06151e" shadowblurx="5" shadowblury="5" shadowstrength="2" shadowalpha="20" shadowdistance="1" shadowangle="90"/>
+		<boxtitle fontname="font_museo.swf" fontid="MuseoSans" fontsize="14" color="0xFFFFFF" uppercase="true"/>
+		<subtitle fontname="font_museo.swf" fontid="MuseoSans" fontsize="18" color="0xFFFFFF" uppercase="true"/>				
+		<archivetitle fontname="font_museo.swf" fontid="MuseoSans" fontsize="22" color="0xFFFFFF" uppercase="true"/>						
+		<legacytitle fontname="font_museo.swf" fontid="MuseoSans" fontsize="30" color="0xFFFFFF" letterspacing="-1"/>		
+		<blizzcasttitle fontname="font_microgammabold.swf" fontid="MicrogammaBold" fontsize="20" color="0xFFFFFF" uppercase="true" padding="1,5,1,3" gradientcolor1="0xFFFFFF" gradientcolor2="0xbadff4" gradientangle="90" glowcolor="0x0060ff" glowblurx="9" glowblury="7" glowstrength="3" glowalpha="70"/>
+		<dropcap-warcraft fontname="font_frizctt.swf" fontid="FrizCTT" fontsize="76" color="0xC87F1A" uppercase="true" gradientcolor1="0xFDE20D" gradientcolor2="0xC87F1A" gradientangle="90" glowcolor="0x5b491d" glowblurx="9" glowblury="5" glowstrength="3" glowalpha="70" padding="-12,3,-2,3"/>
+		<dropcap-starcraft fontname="font_microgramma.swf" fontid="Microgramma" fontsize="80" color="0x96d34b" uppercase="true" glowcolor="0x3d9d26" glowblurx="9" glowblury="5" glowstrength="3" glowalpha="70" padding="-22,3,5,3"/>
+		<dropcap-diablo fontname="font_exocetlight.swf" fontid="ExocetLight" fontsize="85" color="0xFDFC8D" uppercase="true" glowcolor="0xd85f1a" glowblurx="9" glowblury="5" glowstrength="3" glowalpha="70" padding="-16,20,-2,0"/>
+	</styles>
+</flashtext>
+
+		
+<!--
+	FLASHTEXT PARAMETERS:
+	
+	Required:
+
+		fontname="font_museo.swf"		Path of the font SWF
+		fontid="MuseoSans"				ID of the font created in the SWF
+		fontsize="34"					Font size
+		color="0xFFFFFF" 				Font Color
+		
+	Optional settings:	
+
+		letterspacing="20"
+		opacity="100"					Opacity.  Value from 0 to 100.
+		padding="0,0,0,0"				Extra padding inside the Flashtext movie "top, right, bottom, left".  Useful to leave extra room for otherwise cropped glows. 
+		uppercase="true"				Forces uppercase letters.  Default value false.
+
+	Optional glow effect:				(When used, the 5 variables must be defined)    	glowcolor="0xFF00FF" glowblurx="20" glowblury="20" glowstrength="3" glowalpha="100"
+
+		glowcolor="0xFF0000" 			Hex color value.
+		glowblurx="5"					Controls blur horizontally. From 0+
+		glowblury="5" 					Controls blur vertically. From 0+
+		glowstrength="2" 				From 0 to 255.
+		glowalpha="100" 				From 0 to 100.
+
+	Optional drop shadow effect:		(When used, the 7 variables must be defined)   		shadowcolor="0xFF0000" shadowblurx="5" shadowblury="5" shadowstrength="2" shadowalpha="100" shadowdistance="3" shadowangle="90"
+
+		shadowcolor="0xFF0000" 			Hex color value.
+		shadowblurx="5"					Controls blur horizontally. From 0+
+		shadowblury="5" 				Controls blur vertically. From 0+
+		shadowstrength="2" 				From 0 to 255.
+		shadowalpha="100" 				From 0 to 100.
+		shadowdistance="3" 				From 0+
+		shadowangle="90" 				From 0 to 360.			
+		
+	Optional gradient effect			(When used, the 4 variables must be defined)   		gradientcolor1="0xFF0000" gradientcolor2="0x00FF00" gradientangle="90" gradientshiftx="0" gradientshifty="0"	
+	
+		gradientcolor1="0xFF0000"		Hex color value.
+		gradientcolor2="0x00FF00"		Hex color value.
+		gradientangle="90"				From 0 to 360.	
+		gradientshiftx="0"				[ Optional ] Shifts the gradient along the x axis, in pixels.  Default value 0.
+		gradientshifty="0"				[ Optional ] Shifts the gradient along the y axis, in pixels.  Default value 0.		
+
+-->
+
+

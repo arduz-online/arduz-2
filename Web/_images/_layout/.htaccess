@@ -1,0 +1,5 @@
+#SetEnvIfNoCase Referer "localhost" local_ref=1
+#<FilesMatch "\.(gif|jpg|png|swf|mpg|avi)">
+#   Order Allow,Deny
+#   Allow from env=local_ref
+#</FilesMatch>

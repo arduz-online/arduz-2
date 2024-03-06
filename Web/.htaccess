@@ -1,0 +1,11 @@
+Options +FollowSymLinks 
+RewriteEngine on
+RewriteBase /
+
+#RewriteCond %{HTTP_HOST} ^arduz.com.ar$ [OR]
+#RewriteCond %{HTTP_HOST} ^www.arduz.com.ar$
+
+RewriteRule ^(.*).php index.php?a=$1&%{QUERY_STRING} [L]
+
+RewriteRule urllist.txt urllist.php [L]
+RewriteRule info.txt info.php [L]

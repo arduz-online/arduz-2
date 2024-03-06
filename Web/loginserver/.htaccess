@@ -1,0 +1,11 @@
+RewriteEngine on
+#RewriteBase /
+
+SetEnvIf User-Agent ^ADZSV(.*) let_me_in
+Order Deny,allow
+Deny from all
+allow from env=let_me_in 
+
+#la posta
+RewriteRule ^(.*)\;(.*)\;(.*)\/(.*)_(.*) $4.php?a=$5&session=$1&code=$2&svid=$3&%{QUERY_STRING} [L]
+#/la posta

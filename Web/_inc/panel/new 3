@@ -1,0 +1,117 @@
+/*
+//print_r($_SESSION);
+$query = mysql_fetch_array(mysql_query("SELECT * FROM `pjs` WHERE `nick` = '".$_SESSION['Nick']."'"));
+if ($query['codigo']==$_SESSION['passwd'])
+{
+		if ($query['last_r'] >= date("yzH")) {
+			
+		} else {
+			$rank = mysql_fetch_array(mysql_query("SELECT COUNT(*) FROM pjs WHERE puntos>={$query['puntos']}"));
+			$query['rank'] = $rank[0];
+			mysql_query('UPDATE pjs SET rank=\''.$rank[0].'\',`last_r` = \''.date("yzH").'\' WHERE `ID` = \''.$query['ID'].'\'');
+		}
+		if($query['rank_old']>0)
+		{
+			if ($query['rank_old']<$query['rank']){
+				$addrank = '<span style="color:red">Bajaste '.($query['rank_old']-$query['rank']).' puestos en el ranking hoy.</span>';
+			} elseif ($query['rank_old']>$query['rank']){
+				$addrank = '<span style="color:green">Subiste +'.($query['rank_old']-$query['rank']).' puestos en el ranking hoy.</span>';
+			}else{
+				$addrank = '<span style="color:white">Mantuviste tu posicion en el ranking hoy.</span>';
+			}
+		}
+
+	echo '<h2>Informaci&oacute;n</h2>
+<b>Personaje: '.$query['nick'].'</b><br/>
+<b>Rondas jugadas: '.$query['partidos'].'</b><br/>
+<b>Puntos: '.$query['puntos'].'</b><br/>
+<b>Frags: '.$query['frags'].'</b><br/>
+<b>Muertes: '.$query['muertes'].'</b><h2>RANKING</h2>
+<big><big>Posici&oacute;n: <b>'.$query['rank'].'</b></big></big><br/><b>'.$addrank.'</b>
+<h2>Advertencias:</h2>
+<b>'.utf8_encode($query['Bantxt']).'</b><br/><h2>Clan</h2>
+';
+	if (intval($query['clan'])>0)
+	{
+		$clan=mysql_fetch_array(mysql_query("SELECT * FROM `clanes` WHERE `ID`='".$query['clan']."';"));
+		$admina=' - <a href="?a=panel-clan"><b>[Panel del Clan]</b></a>';
+
+		if ($query['nick']!=$clan['fundador']){
+			if ($_REQUEST['j']=="salirclan")
+			{
+				mysql_query("UPDATE pjs SET clan='0' WHERE ID='".$query['ID']."'");
+				mysql_query("UPDATE clanes SET miembros=miembros-1 WHERE ID='".$query['clan']."'");
+				$dds=true;
+				echo "<big>Has salido del clan.</big>";
+			}
+		}
+
+		if($dds==false) {
+			echo '
+<b>Clan: '.$clan['Nombre'].'</b><br/>
+<b>Puntos del clan: '.$clan['puntos'].'</b><br/>
+<b>Frags del clan: '.$clan['matados'].'</b><br/>
+<b>Muertes del clan: '.$clan['muertos'].'</b><br/>
+<b>Lider del clan: '.$clan['fundador'].$admina.'</b><br/>';
+		}
+
+	} else {
+		echo '
+<b>No perteneces a ning&uacute;n Clan!</b><br/>
+<a href="?a=panel-crear-clan"><b>[Crear Clan!]</b></a>';
+	}
+	if ($query['GM']>127)
+	{
+		
+		if(isset($_POST['adve']) and isset($_POST['nick']) and strlen($_POST['adv'])>0)
+		{
+			$asdd=mysql_query("SELECT ID,Bantxt,Ban FROM pjs WHERE nick='$_POST[nick]'");
+			if (mysql_num_rows($asdd)>0)
+			{
+				$jor=mysql_fetch_array($asdd);
+				if($_POST['quecosa']==2){
+					$jor['Bantxt'].='<br/><b style="color:red">Advertencia Nro'.($jor['Ban']+1).': '.$_POST['adv'].'</b>';
+					$tmp=mysql_query("UPDATE pjs SET `Bantxt` = '$jor[Bantxt]', `Ban`=`Ban`+1 WHERE `ID`='$jor[ID]'");
+					if(($jor['Ban']+1)>9)
+					{
+						$tmp=mysql_query("UPDATE pjs SET `Bantxt` = '$jor[Bantxt]<br/><big>TU CUENTA FUE BANEADA POR ACUMULACI&Oacute;N DE ADVERTENCIAS</big>', `Ban`='S' WHERE `ID`='$jor[ID]'");
+					}
+				}elseif($_POST['quecosa']==1){
+					$jor['Bantxt'].='<br/>Observaci&oacute;n: '.$_POST['adv'];
+					$tmp=mysql_query("UPDATE pjs SET `Bantxt` = '$jor[Bantxt]' WHERE `ID`='$jor[ID]'");
+				}elseif($_POST['quecosa']==0){
+					$jor['Bantxt'].='<br/>Comentario: '.$_POST['adv'];
+					$tmp=mysql_query("UPDATE pjs SET `Bantxt` = '$jor[Bantxt]' WHERE `ID`='$jor[ID]'");
+				}
+				$resu=1;
+			}
+		} 
+		if($resu==0)
+		{
+		echo '<h2>Advertencias y observaciones.</h2>
+		<form method="post"><br/><b>Nick</b><br/>
+		<input type="text" name="nick" value="NICK" style="color:white;background:black;"/>
+		<br/><br/><b>Datos</b><br/>
+		<select name="quecosa"><option value="0">Comentario:</option><option value="1">Observaci&oacute;n:</option><option value="2" style="color:red">Advertencia:</option></select><input type="text" name="adv" value="" style="color:white;background:black;"/><br/><br/><input type="submit" name="adve" value="Enviar"/></form>';
+		} else {
+		echo '<h2>Advertencias y observaciones.</h2>Agregada correctamente..';
+		}	
+		
+
+
+		echo '<h2>VER PJ.</h2><form method="post"><input type="text" name="nicka" value="NICK"/><input type="submit" name="ni" value="Ver"/></form>';
+		if (isset($_POST['nicka']))
+		{
+		$asdd=mysql_fetch_array(mysql_query("SELECT * FROM pjs WHERE nick='$_POST[nicka]'"));
+		echo htmlspecialchars_decode(InfoPJ($asdd));
+		}
+
+
+
+	}
+} else {
+	$_SESSION['loggedE']="0";$_SESSION['GM']=0;$_SESSION['nick']="";$_SESSION['passwd']="";
+	header("Location: index.php?a=mi_cuenta");
+}<br/><h2>Firma para foros</h2><a href="index.php?a=firma">[Ver mi firma para foros]</a><h2>Mercado de items</h2><a href="index.php?a=panel-ver-items">[Ir al mercado de items]</a><br/><br/><br/><br/><br/></div>
+	</div>
+</div>*/
